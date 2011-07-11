@@ -38,7 +38,7 @@ button{
 </head>
 <body>
 <div class="optionContainer">
-<h1>设置要收听的音乐电台&nbsp;<a href="http://www.welefen.com/?p=557&from=chrome" target="_blank" style="color:blue;font-size:14px;font-weight:normal;margin-left:35px;">问题反馈</a></h1>
+<h1>设置要收听的音乐电台&nbsp;<a href="http://goo.gl/w3Rds" target="_blank" style="color:blue;font-size:14px;font-weight:normal;margin-left:35px;">问题反馈</a></h1>
 <ul class="clearfix" style="margin-top:40px;">
 	<li title="ting!是百度推出的全新社交音乐媒体（ting.baidu.com），全正版音乐资源、简单流畅的听歌体验、懂你的音乐推荐、炙手可热的音乐人、志同道合的音乐知己，尽在全新的社交音乐媒体ting!，乐在其中。"><label><input name="music" value="ting" type="radio">百度ting!</label></li>
 	<li title="豆瓣FM是基于算法推荐的网络音乐播放产品。它基于豆瓣庞大的用户数据，通过判断用户在播放时的操作行为，为用户推荐他可能感兴趣的曲目。 不同于传统移动音乐播放器，豆瓣FM的特点在于：不用设置播放列表，打开就能播放音乐；可以为用户提供高度个性化内容。每个人的豆瓣FM播放内容都是基于其历史播放行为而推荐。"><label><input name="music" value="douban" type="radio">豆瓣电台</label></li>
@@ -72,7 +72,10 @@ function save(){
 	lis.forEach(function(item){
 		if(item.checked){
 			localStorage.setItem(storageName, item.value);
-			alert('保存成功')
+			chrome.extension.sendRequest({from:'options'}, function(response) {
+				window.open('', '_self', ''); //chrome下通过这种方式可以关闭不能关闭的窗口
+				window.close();
+			});
 		}
 	})
 }

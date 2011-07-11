@@ -104,6 +104,11 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	}else if(request.setItem == 1){
 		localStorage.setItem(sName, 0);
 		localStorage.setItem(aName, 0);
+	}else if(request.from == 'options'){
+		openCurrentWins();
+		sendResponse({
+			options: 'close'
+		})
 	}
 });
 function closeOtherWins(callback){
@@ -121,7 +126,7 @@ function closeOtherWins(callback){
 		callback && callback();
 	})
 }
-chrome.browserAction.onClicked.addListener(function(){
+function openCurrentWins(){
 	var count = localStorage.getItem(sName) | 0, check = localStorage.getItem(aName) | 0;
 	if(count == 1){
 		if(check == 0){
@@ -138,6 +143,9 @@ chrome.browserAction.onClicked.addListener(function(){
 		localStorage.setItem(sName, 1);
 		window.open(music.url+'#welefen', 'popup', pros);
 	})
+}
+chrome.browserAction.onClicked.addListener(function(){
+	openCurrentWins();
 });
 </script>
 </body>
