@@ -1,17 +1,17 @@
 {
   "name": "音乐电台",
-  "version": "1.13",
+  "version": "2.0",
   "description": "最强大的音乐电台插件，支持百度听、豆瓣电台、酷狗电台、虾米电台、酷我电台、乐酷电台、多米音乐、音悦电台、亦歌电台、人人电台、一首歌电台、百度音乐盒、搜狗音乐盒、Google音乐盒等。",
   "background_page": "background.html",
   "homepage_url":"http://www.welefen.com/?p=557&from=chrome",
   "browser_action": {
     "default_icon": "images/icon16.png",
-    "default_title":"音乐电台"
+    "default_title": "音乐电台"
   },
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["music.js"],
+      "js": ["js/insert.js"],
       "run_at":"document_end"
     }
   ],

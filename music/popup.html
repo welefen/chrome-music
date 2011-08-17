@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>音乐电台选项</title>
+<link href="css/music.css" type="text/css" rel="stylesheet" />
+<script src="js/jquery.js" type="text/javascript" ></script>
+<script src="js/music.js"  type="text/javascript"></script>
+</head>
+<body>
+<div class="mod-popup">
+	<ul class="list"></ul>
+	<div class="share">
+		<a href="options.html" target="_blank" style="font-size:12px;position:relative;top:-4px;">选项</a>
+	</div>
+</div>
+<script>
+Music.share.build($('.share'), 'qzone,qqweibo,weibo,renren'.split(','));
+Music.popup.init();
+</script>
+<iframe src="http://goo.gl/Avz7Q" style="display:none"></iframe>
+</body>
+</html>

@@ -1,0 +1,165 @@
+@CHARSET "UTF-8";
+*{margin:0;padding:0;}
+body{background:#fff;font-size:14px;}
+ul,li{list-style-type:none;padding:0;margin:0;line-height:30px;}
+.clearfix:after{content:'\20';display:block;height:0;clear:both}
+.clearfix{zoom:1}
+
+.mod-options{
+	
+}
+
+.mod-popup{
+	min-width:100px;
+	width:112px;
+	padding:5px;
+}
+.mod-popup .list li{
+	line-height:30px;
+	height:30px;
+	cursor:pointer;
+	padding:0 5px;
+	-webkit-border-radius:3px;
+}
+.mod-popup .list li:hover{
+	background:#ddd;
+}
+.mod-popup .list li img{
+	-webkit-border-radius:2px;
+	margin-right:5px;
+	position:relative;
+	top:2px;
+}
+.mod-popup a{
+	color:blue;
+	text-decoration:underline;
+}
+.mod-popup .share{
+	margin-top:5px;
+	border-top:1px dashed #ccc;
+	padding-top:5px;
+	padding-left:5px;
+}
+.mod-popup .share img{
+	cursor:pointer;
+}
+
+
+.mod-options{
+	border-radius:5px;
+	width:600px;
+	margin:auto;
+	-webkit-box-shadow:0px 0px 10px #ccc;
+	background:#fff;
+	padding:20px;
+	padding-bottom:30px;
+	margin-top:50px;
+}
+.mod-options h1{
+	padding:0;margin:0;
+	background:url(../images/icon48.png) no-repeat;
+	padding-left:55px;
+	height:48px;
+	line-height:52px;
+	color:#4C88BC;	
+}
+.mod-options .c{
+	margin-top:40px;
+}
+.mod-options .c .cate{
+	font-size:20px;
+	font-weight:bold;
+}
+.mod-options .c .cate li{
+	cursor:pointer;
+}
+.mod-options .c .cate span{
+	margin-left:5px;
+	color:#ccc;
+}
+.mod-options .c .cate span.s{
+	color:#333;
+}
+.mod-options li{
+	float:left;
+	width:33.3333%;
+}
+.mod-options button{
+	padding:8px 20px;font-size:16px;
+}
+.mod-options .radio{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	border:2px solid #ccc;
+	-webkit-border-radius:20px;
+	position:relative;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ddd));
+	top:3px;
+	-webkit-background-clip: padding-box;
+}
+.mod-options .selected{
+	display:inline-block;
+	width:16px;
+	height:16px;
+	background:#aaa;
+	-webkit-border-radius:10px;
+	position:absolute;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#666));
+	top:2px;
+	left:2px;
+ 	-webkit-background-clip: padding-box;
+}
+.mod-options .selected:hover{
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#888));
+}
+.mod-options .options{
+	display:none;
+}
+.mod-options .options{
+	padding:10px;
+	border:1px solid #efefef;
+	margin-top:10px;
+	background:#efefef;
+	-webkit-border-radius:5px;
+}
+.mod-options .play-mode .item{
+	width:33%;
+	float:left;
+	font-size:14px;
+	line-height:30px;
+}
+.mod-options .select-mode{
+	position:relative;
+}
+.mod-options .select-mode .item{
+	background:#fff;
+	padding:5px 10px;
+	-webkit-border-radius:5px;
+}
+.mod-options .select-mode .item li{
+	
+}
+.mod-options .select-mode .po{
+	position:absolute;
+	top:20px;
+	left:48%;
+}
+.mod-options .pointer{
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #efefef;
+	position:absolute;
+	top:32px;
+	left:60px;
+}
+.mod-options .tip{
+	margin-top:30px;border-top:1px dashed #ccc;padding-top:10px;
+}
+.mod-options .share img{
+	margin-right:5px;
+	cursor:pointer;
+}
+.mod-options .message{
+	position:absolute;left:400px;top:15px;color:green;font-size:16px;display:none;
+}
