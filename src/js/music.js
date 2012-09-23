@@ -16,7 +16,7 @@ window.Music = (function(){
 				name: "豆瓣电台"
 			},
 			"renren":{
-				url:"http://music.renren.com/fm", 
+				url:"http://music.renren.com/fm/pps", 
 				width:455,
 				height:210,
 				name: "人人电台"
@@ -75,6 +75,12 @@ window.Music = (function(){
 				height:575,
 				name: "百度音乐盒"
 			},
+			"baidusuixinting":{
+				url:"http://fm.baidu.com/?embed=ps&bd_user=285491895&bd_sig=b5ec229dfab366de259922435b8156c0", 
+				width:600,
+				height:380,
+				name: "百度随心听"
+			},
 			"sougou":{
 				url:"http://player.mbox.sogou.com/player", 
 				width:625,
@@ -87,12 +93,6 @@ window.Music = (function(){
 				height:395,
 				name: "QQ音乐"
 			},
-			"google":{
-				url:"http://www.google.cn/music/player", 
-				width:765,
-				height:470,
-				name: "谷歌音乐盒"
-			},
 			"bus":{
 				url:"http://bus.fm/", 
 				width:920,
@@ -100,10 +100,22 @@ window.Music = (function(){
 				name: "巴士电台"
 			},
 			"weibo":{
-				url:"http://music.weibo.com/ting/?leftnav=1&wvr=4", 
+				url:"http://ting.weibo.com/", 
 				width:765,
-				height:470,
+				height:270,
 				name: "微博音乐盒"
+			},
+			"5SING":{
+				url:"http://open.5sing.com/baidu/tindex.aspx?bd_user=285491895&bd_sig=0271972587e558252a59ffaece700b3d&canvas_pos=platform", 
+				width:550,
+				height:370,
+				name: "5SING听"
+			},
+			"beiwa":{
+				url:"http://app.beva.com/baidu/fm/show-i10001.html?bd_user=285491895&bd_sig=8ec1cd56d06aa8e43bf2d4811e494aeb&canvas_pos=platform", 
+				width:540,
+				height:550,
+				name: "贝瓦电台"
 			}
 		},
 		//获取随机电台名
@@ -367,7 +379,6 @@ window.Music = (function(){
 			             flag ? '' : 'checked',
 			             '/> 随机播放</label></div>'
 			             ].join('');
-			
 			$($('.mod-options .options')[0]).html(html.join(''));
 		},
 		getItemHtml: function(name, value){
@@ -543,9 +554,13 @@ window.Music = (function(){
 			var items = music.options.getSelectItem(), html = [], i = 0;
 			$.each(items, function(){
 				var item = music.list[this+''];
-				html[i++] = '<li title="点击播放" onclick="Music.play(\''+this+'\')"><img src="images/icons/'+this+'.png" />'+item.name+'</li>';
+				html[i++] = '<li title="点击播放" name="'+(this+"")+'"class="diantai '+(this+'')+'"><img src="images/icons/'+this+'.png" />'+item.name+'</li>';
 			})
 			$('.mod-popup .list').html(html.join(''));
+			$('.mod-popup .list .diantai').click(function(){
+				var name = $(this).attr('name');
+				Music.play(name);
+			})
 		}
 	}
 	music.config = {

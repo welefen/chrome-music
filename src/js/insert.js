@@ -30,23 +30,6 @@
 		'kuwo':function(bd){
 			bd.style.paddingTop = 0;
 		},
-		'renren':function(){
-			var removeEles = ['.header','.footer'].join(',');
-			var els = [].slice.call(document.querySelectorAll(removeEles));
-			els.forEach(function(el){
-				removeChild(el);
-			});
-			var el = $('radioBox');
-			el.style.paddingTop = '0';
-			el.style.margin = 'auto';
-			el.style.width = 'auto';
-			el.style.height = 'auto';
-			el.style.background = 'none';
-			var el = document.querySelector('.radio');
-			el.style.margin = 'auto';
-			var el = document.getElementById('radioBody');
-			el.style.width = 'auto';
-		},
 		"baidu":function(bd){
 			var width = this.width, height = this.height, timer = 0, flag = false;
 			window.addEventListener('load',function(){

@@ -1,0 +1,6 @@
+/**
+ * 
+ */
+$(function(){
+	Music.background.init();
+})
