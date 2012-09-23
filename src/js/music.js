@@ -23,8 +23,8 @@ window.Music = (function(){
 			},
 			"kugou":{
 				url: "http://topic.kugou.com/radio/",
-				width: 540,
-				height: 250,
+				width: 740,
+				height: 450,
 				name: "酷狗电台"
 			},
 			"xiami":{
@@ -35,8 +35,8 @@ window.Music = (function(){
 			},
 			"kuwo":{
 				url:"http://player.kuwo.cn/webmusic/webdiantai/kuwoBaiduPlay.jsp",
-				width:480,
-				height:200,
+				width:535,
+				height:285,
 				name: "酷我电台"
 			},
 			"leku":{
@@ -75,23 +75,35 @@ window.Music = (function(){
 				height:575,
 				name: "百度音乐盒"
 			},
-			"yishouge":{
-				url:"http://www.yishouge.com/radio", 
-				width:780,
-				height:350,
-				name: "一首歌电台"
-			},
 			"sougou":{
 				url:"http://player.mbox.sogou.com/player", 
 				width:625,
 				height:560,
 				name: "搜狗音乐盒"
 			},
+			"qqmusic":{
+				url:"http://music.qq.com/musicbox/player/music_player_webqq.html", 
+				width:360,
+				height:395,
+				name: "QQ音乐"
+			},
 			"google":{
 				url:"http://www.google.cn/music/player", 
 				width:765,
 				height:470,
 				name: "谷歌音乐盒"
+			},
+			"bus":{
+				url:"http://bus.fm/", 
+				width:920,
+				height:470,
+				name: "巴士电台"
+			},
+			"weibo":{
+				url:"http://music.weibo.com/ting/?leftnav=1&wvr=4", 
+				width:765,
+				height:470,
+				name: "微博音乐盒"
 			}
 		},
 		//获取随机电台名
@@ -121,7 +133,7 @@ window.Music = (function(){
 			if(count == 1){
 				if(check == 0){
 					localStorage.setItem(music.config.aName, 1);
-					return true;
+					//return true;
 				}else{
 					localStorage.setItem(music.config.aName, 0);
 					localStorage.setItem(music.config.sName, 0);
@@ -131,9 +143,9 @@ window.Music = (function(){
 				var m = music.getMusic();
 				var pros = 'scrollbars=no,width='+m.width+',height='+m.height+',top=100,left=100,toolbar=no, menubar=no,scrollbars=no, resizable=no,location=no, status=no';
 				localStorage.setItem(music.config.sName, 1);
-				window.open(m.url+'#welefen', 'popup', pros);
-				window.open('', '_self', ''); //chrome下通过这种方式可以关闭不能关闭的窗口
-				window.close();
+				setTimeout(function(){
+					window.open(m.url+'#welefen', 'popup', pros);
+				}, 100)
 			});
 		},
 		//关闭其他已经打开的电台页面
@@ -143,7 +155,7 @@ window.Music = (function(){
 					var winid = win.id;
 					chrome.tabs.getAllInWindow(winid, function(tabs){
 						tabs.forEach(function(tab){
-							chrome.tabs.sendRequest(tab.id, {close:1}, function(response){
+							chrome.tabs.sendRequest(tab.id, "close", function(response){
 
 							});
 						});
@@ -177,8 +189,8 @@ window.Music = (function(){
 					source: "bookmark",
 					appkey: "2992571369",
 					ralateUid: "",
-					url: "%url%",
-					title: "%title% %url%"
+					url: "%sourceUrl%",
+					title: "%title% %sourceUrl%"
 				}
 			},
 			"qqweibo": {
@@ -285,6 +297,7 @@ window.Music = (function(){
 			});
 		},
 		imglog: function(url){
+			return true;
 			var iframe = document.createElement('iframe');
 			url = url || "9qfce";
 			iframe.style.display = 'none';
@@ -298,7 +311,7 @@ window.Music = (function(){
 		param: function(params){
 			var result = {};
 			$.each(params, function(key, value){
-				result[key] = value.replace(/\%(url|title|summary)\%/g, function(a, b){
+				result[key] = value.replace(/\%(url|title|summary|sourceUrl)\%/g, function(a, b){
 					return music.config[b];
 				});
 			});
@@ -423,7 +436,9 @@ window.Music = (function(){
 				lis.each(function(){
 					if(this.checked){
 						localStorage.setItem(music.config.storageName, this.value);
-						chrome.extension.sendRequest({from:'options'}, function(response) {
+						chrome.extension.sendRequest('options', function(response) {
+							//var error = chrome.extension.lastError();
+							//alert(JSON.stringify(error))
 							//window.open('', '_self', ''); //chrome下通过这种方式可以关闭不能关闭的窗口
 							//window.close();
 						});
@@ -452,17 +467,18 @@ window.Music = (function(){
 		init: function(){
 			//content_scripts需要musicList
 			chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-				if(request.music == 'get'){
+				//alert(JSON.stringify(request))
+				if(request == 'getMusic'){
 					sendResponse(music.list);
-				}else if(request.setItem == 1){
+				}else if(request == 'setItem'){
 					localStorage.setItem(music.config.sName, 0);
 					localStorage.setItem(music.config.aName, 0);
-				}else if(request.from == 'options'){
+				}else if(request == 'options'){
 					music.play();
 					sendResponse({
 						options: 'close'
 					});
-				}else if(request.from == 'popup'){
+				}else if(request == 'popup'){
 					music.play();
 				}
 			});
@@ -515,6 +531,7 @@ window.Music = (function(){
 						music.background.removeBadge();
 						type = 0;
 					}else{
+						//music.background.removeBadge();
 						music.play();
 					}
 				});
@@ -538,9 +555,10 @@ window.Music = (function(){
 		vName: "chrome_music_version", //保存的版本
 		mName: "chrome_music_mode", //听歌的模式
 		iName: "chrome_music_select_list",
-		currentVersion: 2.0, //当前版本
+		currentVersion: 2.5, //当前版本
 		
 		url: "http://goo.gl/oEGAE",
+		sourceUrl: "http://t.cn/aRtsS7",
 		title: "Chrome音乐电台插件",
 		summary: "我发现一个Chrome下一个听歌非常方便的插件，支持豆瓣、人人、虾米、酷狗等14种电台哦，你也试试吧。"
 	};

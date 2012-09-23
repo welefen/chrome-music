@@ -7,6 +7,7 @@
 		bd.style.overflow = 'hidden';
 	},
 	imglog = function(){
+		return true;
 		var iframe = document.createElement('iframe');
 		iframe.style.display = 'none';
 		iframe.onload = function(){
@@ -72,7 +73,7 @@
 			$('ysg-player').style.margin = 'auto';
 		}
 	};
-	chrome.extension.sendRequest({music:'get'}, function(response) {
+	chrome.extension.sendRequest("getMusic", function(response) {
 		musicList = response;
 		//alert(JSON.stringify(musicList))
 		for(var name in response){
@@ -96,7 +97,7 @@
 		}
 	});
 	chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-		if(request.close == 1){
+		if(request == "close"){
 			for(var name in musicList){
 				var url = musicList[name].url;
 				if(url && location.href.indexOf(url) === 0){
