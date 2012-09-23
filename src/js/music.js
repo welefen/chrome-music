@@ -18,7 +18,7 @@ window.Music = (function(){
 			"renren":{
 				url:"http://music.renren.com/fm", 
 				width:455,
-				height:215,
+				height:210,
 				name: "人人电台"
 			},
 			"kugou":{
