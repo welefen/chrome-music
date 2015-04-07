@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "音乐电台",
-  "version": "2.9",
+  "version": "3.0",
   "description": "最强大的音乐电台插件，支持百度听、豆瓣电台、酷狗电台、虾米电台、酷我电台、乐酷电台、多米音乐、音悦电台、亦歌电台、人人电台、一首歌电台、百度音乐盒、搜狗音乐盒、Google音乐盒、QQ音乐、巴士电台等。",
   "background": {
   	"page": "background.html"

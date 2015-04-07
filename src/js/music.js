@@ -15,12 +15,6 @@ window.Music = (function(){
 				height:186,
 				name: "豆瓣电台"
 			},
-			"renren":{
-				url:"http://music.renren.com/fm/pps", 
-				width:455,
-				height:210,
-				name: "人人电台"
-			},
 			"kugou":{
 				url: "http://topic.kugou.com/radio/",
 				width: 740,
@@ -57,18 +51,6 @@ window.Music = (function(){
 				height:445,
 				name: "音悦TV"
 			},
-			"yige":{
-				url:"http://www.1g1g.com/", 
-				width:560,
-				height:480,
-				name: "亦歌电台"
-			},
-			"ting":{
-				url:"http://ting.baidu.com/radio/index.html?__methodName=setChannel&__argsValue=public_1",
-				width:470,
-				height:250,
-				name: "百度ting"
-			},
 			"baidu":{
 				url:"http://box.zhangmen.baidu.com/m?rf=idx&ct=134217728&tn=baidumt&gate=5", 
 				width:510,
@@ -77,8 +59,8 @@ window.Music = (function(){
 			},
 			"baidusuixinting":{
 				url:"http://fm.baidu.com/?embed=ps&bd_user=285491895&bd_sig=b5ec229dfab366de259922435b8156c0", 
-				width:600,
-				height:380,
+				width:878,
+				height:576,
 				name: "百度随心听"
 			},
 			"sougou":{
@@ -90,32 +72,44 @@ window.Music = (function(){
 			"qqmusic":{
 				url:"http://music.qq.com/musicbox/player/music_player_webqq.html", 
 				width:360,
-				height:395,
+				height:415,
 				name: "QQ音乐"
-			},
-			"bus":{
-				url:"http://bus.fm/", 
-				width:920,
-				height:470,
-				name: "巴士电台"
-			},
-			"weibo":{
-				url:"http://ting.weibo.com/", 
-				width:765,
-				height:270,
-				name: "微博音乐盒"
-			},
-			"5SING":{
-				url:"http://open.5sing.com/baidu/tindex.aspx?bd_user=285491895&bd_sig=0271972587e558252a59ffaece700b3d&canvas_pos=platform", 
-				width:550,
-				height:370,
-				name: "5SING听"
 			},
 			"beiwa":{
 				url:"http://app.beva.com/baidu/fm/show-i10001.html?bd_user=285491895&bd_sig=8ec1cd56d06aa8e43bf2d4811e494aeb&canvas_pos=platform", 
 				width:540,
 				height:550,
 				name: "贝瓦电台"
+			},
+			"wangyiyunyinyue":{
+				url:"http://music.163.com/#/my/", 
+				width: 1000,
+				height:550,
+				name: "网易云音乐"
+			},
+			"ximalaya":{
+				url:"http://zhubo.ximalaya.com/", 
+				width: 1000,
+				height:550,
+				name: "喜马拉雅"
+			},
+			"qingting":{
+				url:"http://www.qingting.fm/#/home", 
+				width: 1000,
+				height:550,
+				name: "蜻蜓FM"
+			},
+			"fenghuang":{
+				url:"http://diantai.ifeng.com/", 
+				width: 1000,
+				height:550,
+				name: "凤凰电台"
+			},
+			"9ku":{
+				url:"http://www.9ku.com/fm/", 
+				width: 1000,
+				height:550,
+				name: "九酷电台"
 			}
 		},
 		//获取随机电台名
@@ -394,8 +388,10 @@ window.Music = (function(){
 			for(var i=0,len=item.length;i<len;i++){
 				name = item[i];
 				value = music.list[name];
-				var im = options.getItemHtml(name, value.name);
-				shtml.push(im);
+				if (value) {
+					var im = options.getItemHtml(name, value.name);
+					shtml.push(im);
+				}
 			}
 			for(var name in music.list){
 				value = music.list[name];
@@ -570,12 +566,12 @@ window.Music = (function(){
 		vName: "chrome_music_version", //保存的版本
 		mName: "chrome_music_mode", //听歌的模式
 		iName: "chrome_music_select_list",
-		currentVersion: 2.5, //当前版本
+		currentVersion: 3.0, //当前版本
 		
 		url: "http://goo.gl/oEGAE",
 		sourceUrl: "http://t.cn/aRtsS7",
 		title: "Chrome音乐电台插件",
-		summary: "我发现一个Chrome下一个听歌非常方便的插件，支持豆瓣、人人、虾米、酷狗等14种电台哦，你也试试吧。"
+		summary: "我发现一个Chrome下一个听歌非常方便的插件，支持豆瓣、虾米、酷狗等14种电台哦，你也试试吧。"
 	};
 	return music;
 })();
